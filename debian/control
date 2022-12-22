@@ -1,0 +1,36 @@
+Source: python-monotonic
+Section: python
+Priority: optional
+Maintainer: Debian OpenStack <team+openstack@tracker.debian.org>
+Uploaders:
+ Thomas Goirand <zigo@debian.org>,
+Build-Depends:
+ debhelper-compat (= 11),
+ dh-python,
+ openstack-pkg-tools,
+ python3-all,
+ python3-setuptools,
+Standards-Version: 4.4.1
+Vcs-Browser: https://salsa.debian.org/openstack-team/python/python-monotonic
+Vcs-Git: https://salsa.debian.org/openstack-team/python/python-monotonic.git
+Homepage: https://github.com/atdt/monotonic
+Testsuite: autopkgtest-pkg-python
+
+Package: python3-monotonic
+Architecture: all
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+Description: implementation of time.monotonic() - Python 3.x
+ This module provides a monotonic() function which returns the value (in
+ fractional seconds) of a clock which never goes backwards. On Python 3.3 or
+ newer, monotonic will be an alias of time.monotonic from the standard library.
+ On older versions, it will fall back to an equivalent implementation:
+ GetTickCount64 on Windows, mach_absolute_time on OS X, and clock_gettime(3)
+ on Linux/BSD.
+ .
+ If no suitable implementation exists for the current platform, attempting to
+ import this module (or to import from it) will cause a RuntimeError exception
+ to be raised.
+ .
+ This package contains the Python 3.x module.
